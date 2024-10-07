@@ -23,8 +23,7 @@ void setup(void) {
 }
 
 void test_ordered_array_is_empty_zero_el(void) {
-  TEST_ASSERT_TRUE(ordered_array_is_empty(
-      ordered_array_int));  // test_assert_true verifica che la condizione sia vera
+  TEST_ASSERT_TRUE(ordered_array_is_empty(ordered_array_int));  // test_assert_true verifica che la condizione sia vera
 }
 
 void test_ordered_array_is_empty_one_el(void) {

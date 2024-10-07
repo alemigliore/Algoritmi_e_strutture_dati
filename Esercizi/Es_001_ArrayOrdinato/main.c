@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "ordered_array.h"
+
 /*
 Realizzare la struttura dati Array Ordinato che mantiene un array ordinato di elementi.
 Gli elementi di ogni array hanno tutti lo stesso tipo, ma la struttura dati deve essere generica (il
@@ -14,10 +16,38 @@ _ Aggiungere un elemento all’array
 _ Recuperare l’elemento dell’array in posizione i
 */
 
-struct orderArray {
+struct _OrderedArray {
   // si riferisce ad una struttura con puntatore
-  void** array;
+  void **array;
   unsigned long el_num;
   unsigned long array_capacity;
-  int (*precedes)(void*, void*);  // restituisce true se primo arg. < secondo arg.
+  int (*precedes)(void *, void *);  // restituisce true se primo arg. < secondo arg.
 };
+
+OrderedArray *ordered_array_create(int (*precedes)(void *, void *)) {
+  if (precedes == NULL) {
+    printf("Error: precedes is NULL\n");
+    exit(EXIT_FAILURE);
+  }
+  OrderedArray *ordered_array = (OrderedArray *)malloc(sizeof(OrderedArray));
+
+  if (ordered_array == NULL) {
+    printf("Error: ordered_array is null\n");
+    exit(EXIT_FAILURE);
+  }
+
+  ordered_array->array = NULL;
+  ordered_array->el_num = 0;
+  ordered_array->array_capacity = 2;  // definisco la capacità iniziale dell'array
+
+  return ordered_array;
+}
+
+int ordered_array_is_empty(OrderedArray *ordered_array) {
+  if (ordered_array == NULL) {
+    printf("Error: ordered_array is NULL\n");
+    exit(EXIT_FAILURE);
+  }
+
+  return ordered_array->el_num == 0;
+}

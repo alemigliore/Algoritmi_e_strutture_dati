@@ -51,3 +51,8 @@ int ordered_array_is_empty(OrderedArray *ordered_array) {
 
   return ordered_array->el_num == 0;
 }
+
+int main() {
+    // codice del tuo programma
+    return 0;
+}
